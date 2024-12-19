@@ -3,38 +3,32 @@
 ## https://github.com/Deep-MI/FastSurfer?tab=readme-ov-file 
 ##_____________________________________________________________________________!
 
-for dataset in oasis/pMCI oasis/sMCI ADNI/pMCI  ADNI/sMCI;do
+for dataset in oasis ADNI ;do
     for sub in ${dataset}/*;do
         base_name=$(basename $sub)
         SUBJECTS_DIR=${sub}
         fastsurfer --t1 "${sub}/${base_name}.nii.gz"  --sd "${dataset}" --sid "${base_name}"   --fs_license "license.txt" --no_cereb --no_hypothal --parallel --threads 20 --qc_snap --seg_only
     done
 done
-##_____________________________________________________________________________!
-
-
 
 ##____________________________GMWM extraction _________________________________!
 ##  
-# python ./GMWM_extraction.py oasis/pMCI/
-# python ./GMWM_extraction.py oasis/sMCI/
-# python ./GMWM_extraction.py ADNI/pMCI/
-# python ./GMWM_extraction.py ADNI/sMCI/
+# python ./GMWM_extraction.py oasis
+# python ./GMWM_extraction.py ADNI
 
-./GMWM_extraction.sh oasis/pMCI/
-./GMWM_extraction.sh oasis/sMCI/
-./GMWM_extraction.sh ADNI/pMCI/
-./GMWM_extraction.sh ADNI/sMCI/
+./GMWM_extraction.sh oasis
+./GMWM_extraction.sh ADNI
 
-##_____________________________________________________________________________!
+##____________________________mriqc,outlier rm_________________________________!
 
+./mriqc.sh oasis
+./mriqc.sh ADNI
 
+# python ./outliers.py oasis
+# python ./outliers.py ADNI
 
-##____________________________ outlier detect _________________________________!
-##  
-##____________________________________________________________________________!
-
-
+./outliers.sh oasis
+./outliers.sh ADNI
 
 ##____________________________ minmax normal _________________________________!
 ##  
