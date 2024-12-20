@@ -1,3 +1,6 @@
+##____________________________ convert DCM2nii_________________________________!
+for sub in nii/*;do cd $sub; dcm2niix -f "%f_%p_%t_%s" -p y -z y .;cd ..;done
+
 ##____________________________ pre_processing _________________________________!
 ## follow installation guid in below link for fastsurfer to preprocess and segmentation of the brain using deeplearning
 ## https://github.com/Deep-MI/FastSurfer?tab=readme-ov-file 
