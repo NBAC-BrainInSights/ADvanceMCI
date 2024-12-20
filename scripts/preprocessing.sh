@@ -19,10 +19,12 @@ done
 ./GMWM_extraction.sh oasis
 ./GMWM_extraction.sh ADNI
 
-##____________________________mriqc,outlier rm_________________________________!
+##____________________________mriQualityControl_________________________________!
 
 ./mriqc.sh oasis
 ./mriqc.sh ADNI
+
+##____________________________ outlier detect _________________________________!
 
 # python ./outliers.py oasis
 # python ./outliers.py ADNI
@@ -38,13 +40,13 @@ python .MinMax_norm.py ADNI
 # .MinMax_norm.sh oasis
 # .MinMax_norm.sh ADNI
 
-
-##_____________________________________________________________________________!
-
-
-
 ##____________________________ resize T1w 64  _________________________________!
-##  
+for dataset in oasis  ADNI;do
+    for sub in ${dataset}/*;do
+        base_name=$(basename $sub)
+        mrgrid $sub regrid -template $sub -size 64,64,64 ${dataset}/64/$base_name -fill nan
+    done
+done
 ##_____________________________________________________________________________!
 
 
