@@ -31,7 +31,14 @@ done
 ./outliers.sh ADNI
 
 ##____________________________ minmax normal _________________________________!
-##  
+
+python .MinMax_norm.py oasis
+python .MinMax_norm.py ADNI
+
+# .MinMax_norm.sh oasis
+# .MinMax_norm.sh ADNI
+
+
 ##_____________________________________________________________________________!
 
 
